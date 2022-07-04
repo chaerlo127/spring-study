@@ -22,6 +22,10 @@ public class User {
     private String password;
     private String email;
     private String role;
+    //oauth
+    private String provider; // google
+    private String providerId; // google sub
+
 
     @CreationTimestamp
     private Timestamp createdDate;
