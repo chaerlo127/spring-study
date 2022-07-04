@@ -19,7 +19,7 @@ public class PrincipalDetailsService implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
-    // 시큐리티 세션 = Autentication  = UserDetails
+    // 시큐리티 세션 = Authentication  = UserDetails
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);

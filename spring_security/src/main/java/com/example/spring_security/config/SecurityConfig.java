@@ -31,6 +31,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin().loginPage("/loginForm")// 권한이 필요한 곳에서는(user, admin, manager) login 화면으로 이동한다.
                 .loginProcessingUrl("/login") // login 주소가 호출되면 시큐리티가 낚아채서 대신 로그인을 진행해준다.
                 .defaultSuccessUrl("/")
+                //oauth 네이버, 카카오, 구글 로그인 가능하도록 만듦
+                .and()
+                .oauth2Login()
+                .loginPage("/loginForm")
         ;
     }
 }
