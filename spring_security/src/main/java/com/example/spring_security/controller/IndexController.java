@@ -4,6 +4,8 @@ package com.example.spring_security.controller;
 import com.example.spring_security.model.User;
 import com.example.spring_security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,6 +60,18 @@ public class IndexController {
         user.setPassword(encPassword);
         userRepository.save(user); //비밀번호 1234 => 시큐리티로 로그인을 할 수 없음.
         return "redirect:/loginForm";
+    }
+
+    @Secured("ROLE_MANAGER")
+    @GetMapping("/info")
+    public @ResponseBody String info(){
+        return "회원정보";
+    }
+
+    @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")
+    @GetMapping("/data")
+    public @ResponseBody String data(){
+        return "회원정보";
     }
 
 
