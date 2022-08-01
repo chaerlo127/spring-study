@@ -16,10 +16,10 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 
 
     private UserRepository userRepository;
-    // Security Config 순환 참조가 걸려 진행이 안됨.
-    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        // Security Config 순환 참조가 걸려 진행이 안됨.
+        private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
     public PrincipalOauth2UserService(UserRepository userRepository){
-        this.userRepository = userRepository;
+            this.userRepository = userRepository;
     }
 
 
