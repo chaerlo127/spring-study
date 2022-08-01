@@ -1,0 +1,9 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!--
+absolute path에서는 hello! empty가 나오게 되지만
+실제로 서버에서 연결하게되면 그 부분은 무시가 되고 th 부분의 값이 연결됨
+absolute path를 통해서 서버 연결 없이 껍데기 확인을 위해 있는 의미 없는 허수-->
+<p th:text="'hello ' + ${name}">hello! empty</p>
+</body>
+</html>
