@@ -9,12 +9,15 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+//@Service
 public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    @Autowired
+    /**
+     * DI에는 필드, setter, 생성자 주입 이렇게 3가지 방법이 있음.
+     */
+//    @Autowired
     public MemberService(MemberRepository memberRepository){
         this.memberRepository = memberRepository;
     }
