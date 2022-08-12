@@ -19,6 +19,17 @@ dependencies {
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+
+	// jdbc
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	// jpa
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	implementation 'org.springframework.boot:spring-boot-starter'
+	runtimeOnly 'com.h2database:h2'
+
+	runtimeOnly 'mysql:mysql-connector-java'
+
 }
 
 tasks.named('test') {
