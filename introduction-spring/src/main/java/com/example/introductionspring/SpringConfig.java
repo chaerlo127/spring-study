@@ -1,13 +1,13 @@
 package com.example.introductionspring;
 
-import com.example.introductionspring.repository.JdbcMemberRepository;
-import com.example.introductionspring.repository.JdbcTemplateMemberRepository;
+import com.example.introductionspring.repository.JpaMemberRepository;
 import com.example.introductionspring.repository.MemberRepository;
 import com.example.introductionspring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import javax.sql.DataSource;
+
+import javax.persistence.EntityManager;
 
 /**
  * OCP : Open - Closed Principle 개방 폐쇄 원칙
@@ -17,10 +17,18 @@ import javax.sql.DataSource;
  */
 @Configuration
 public class SpringConfig {
-    private final DataSource dataSource;
-    public SpringConfig(DataSource dataSource) {
-        this.dataSource = dataSource;
+//    private final DataSource dataSource;
+//    public SpringConfig(DataSource dataSource) {
+//        this.dataSource = dataSource;
+//    }
+
+    private final EntityManager em;
+
+    @Autowired
+    public SpringConfig(EntityManager em) {
+        this.em = em;
     }
+
     @Bean
     public MemberService memberService() {
         return new MemberService(memberRepository());
@@ -29,7 +37,7 @@ public class SpringConfig {
     public MemberRepository memberRepository() {
 // return new MemoryMemberRepository();
 //        return new JdbcMemberRepository(dataSource);
-        return new JdbcTemplateMemberRepository(dataSource);
+//        return new JdbcTemplateMemberRepository(dataSource);
+        return new JpaMemberRepository(em);
     }
-
 }
