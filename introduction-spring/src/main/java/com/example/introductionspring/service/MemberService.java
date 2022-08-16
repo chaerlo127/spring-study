@@ -28,12 +28,37 @@ public class MemberService {
     * 회원 가입
     */
     public Long join(Member member){
-        // 같은 이름이 있는 중복 회원은 안됨
-        // ctrl + a/t + v -> 원하는 리턴 값 자동으로 반환해줌
-        // ctrl + a/t + shift + T -> Refactor this -> method -> extract method
-        validateDuplicateMember(member); // 중복 회원 검증
-        memberRepository.save(member);
-        return member.getId();
+        /**
+         * AOP
+         *
+         * 호출 시간을 측정
+         * 공통 관심사항(cross-cutting concern) vs 핵심 관심 사항(core concern)
+         * 회원 가입 시간, 회원 조회 시간 측정
+         */
+
+        /**
+         * AOP가 필요한 이유
+         *  시간 측정은 핵심 관심사항이 아님
+         *  시간을 측정하는 로직은 공통 관심사항
+         *  try 문 안에 핵심 관심 사항, catch 안에 공통 관심 사항이 있으면 유지 보수가 어려움
+         *  시간 측정을 하는 로직을 별도 공통 로직으로 만들기 매우 어려움
+         *  시간 측정 로직을 변경하면 모든 로직을 찾아가 변경해야 함.
+         */
+        long start = System.currentTimeMillis();
+        try{
+            // 같은 이름이 있는 중복 회원은 안됨
+            // ctrl + a/t + v -> 원하는 리턴 값 자동으로 반환해줌
+            // ctrl + a/t + shift + T -> Refactor this -> method -> extract method
+            validateDuplicateMember(member); // 중복 회원 검증
+            memberRepository.save(member);
+            return member.getId();
+        }finally{
+            long finish = System.currentTimeMillis();
+            long timeMs = finish-start;
+            System.out.println("join = " + timeMs + "ms");
+        }
+
+
     }
 
     private void validateDuplicateMember(Member member) {
