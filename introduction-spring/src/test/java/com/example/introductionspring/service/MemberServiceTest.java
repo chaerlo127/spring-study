@@ -13,6 +13,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * ctrl + shift + T -> 원하는 자바 파일로 이동하여 이 단축키를 입력하면
  * 자동으로 test 파일을 생성해 줌
  * test는 직관적으로 알아볼 수 있도록 과감하게 한글 method로 변경해도 됨
+ *
+ * Spring 단위 테스트
  */
 class MemberServiceTest {
 
